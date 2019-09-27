@@ -27,6 +27,15 @@
     <ClInclude Include="Struct.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="FaseController.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fase2.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fase0.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Origem.c">

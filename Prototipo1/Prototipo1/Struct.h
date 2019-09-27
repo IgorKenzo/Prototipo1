@@ -13,6 +13,8 @@
 #define LARGURA_TELA 640
 #define ALTURA_TELA 480
 
+#define TAMANHO_INVENTARIO 7
+
 #define SOME_HEADER_GUARD_WITH_UNIQUE_NAME
 
 typedef struct Obj
@@ -26,4 +28,6 @@ typedef struct Obj
 	int cliqueY;
 } Objeto;
 
+
+Objeto inventario[TAMANHO_INVENTARIO];
 #endif
