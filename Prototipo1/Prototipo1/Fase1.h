@@ -10,40 +10,41 @@
 #include "Struct.h"
 
 int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int acerto) {
-	Objeto imagem;
+	Objeto saida1;
 	// Variável para imagem
-	imagem.beatmap = NULL;
-	imagem.x = 0;
-	imagem.y = 0;
-	imagem.largura = 100;
-	imagem.altura = 100;
+	saida1.bitmap = NULL;
+	saida1.x = 0;
+	saida1.y = 0;
+	saida1.largura = 100;
+	saida1.altura = 100;
 
-	Objeto retangulo;
-	retangulo.beatmap = NULL;
-	retangulo.x = LARGURA_TELA - 150;
-	retangulo.y = ALTURA_TELA - 150;
-	retangulo.altura = 150;
-	retangulo.largura = 150;
+	Objeto saida2;
+	// Variável para imagem
+	saida2.bitmap = NULL;
+	saida2.x = LARGURA_TELA - 100;
+	saida2.y = 0;
+	saida2.largura = 100;
+	saida2.altura = 100;
 
-	Objeto saida;
-	saida.beatmap = NULL;
-	saida.x = LARGURA_TELA - 100;
-	saida.y = 0;
-	saida.largura = 100;
-	saida.altura = 100;
+	Objeto mensagem;
+	mensagem.bitmap = NULL;
+	mensagem.x = LARGURA_TELA / 2 - 100;
+	mensagem.y = ALTURA_TELA - 100;
+	mensagem.largura = 200;
+	mensagem.altura = 100;
 
-	Objeto certo;
-	certo.beatmap = NULL;
-	certo.x = 0;
-	certo.y = ALTURA_TELA - 100;
-	certo.altura = 100;
-	certo.largura = 100;
+	Objeto mensagemTravada;
+	mensagemTravada.bitmap = NULL;
+	mensagemTravada.x = LARGURA_TELA / 2 - 100;
+	mensagemTravada.y = ALTURA_TELA - 100;
+	mensagemTravada.largura = 200;
+	mensagemTravada.altura = 100;
 
-	imagem.beatmap = al_load_bitmap("Imgs/photo.bmp");
-	retangulo.beatmap = al_load_bitmap("Imgs/ret.bmp");
-	saida.beatmap = al_load_bitmap("Imgs/direita.png");
-	certo.beatmap = al_load_bitmap("Imgs/ok.bmp");
-	if (!imagem.beatmap || !retangulo.beatmap || !saida.beatmap) {
+	saida1.bitmap = al_load_bitmap("Imgs/esquerda.png");
+	saida2.bitmap = al_load_bitmap("Imgs/direita.png");
+	mensagem.bitmap = al_load_bitmap("Imgs/mensagem.png");
+	mensagemTravada.bitmap = al_load_bitmap("Imgs/mensagemtravada.png");
+	if (!saida1.bitmap || !mensagem.bitmap || !mensagemTravada.bitmap || !saida2.bitmap) {
 		fprintf(stderr, "Falha ao iniciar imagem\n");
 		al_destroy_display(janela);
 		return -1;
@@ -54,23 +55,18 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 	// Preenchemos a janela de branco
 	al_clear_to_color(al_map_rgb(255, 255, 255));
 
-	if (acerto)
-	{
-		imagem.x = retangulo.x + 10;
-		imagem.y = retangulo.y + 10;
-	}
-
 	//desenha a imagem na tela
-	al_draw_bitmap(imagem.beatmap, imagem.x, imagem.y, 0);
-	al_draw_bitmap(retangulo.beatmap, retangulo.x, retangulo.y, 0);
-	al_draw_bitmap(saida.beatmap, saida.x, saida.y, 0);
+	al_draw_bitmap(saida1.bitmap, saida1.x, saida1.y, 0);
+	al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
+	al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
 
 	// Atualiza a tela
 	al_flip_display();
 
 	int gameOver = 0;
-	int Arrastando = 0;
-	while (!gameOver) {
+
+	while (!gameOver)
+	{
 		while (!al_is_event_queue_empty(fila_eventos))
 		{
 			//Cria um evento
@@ -83,52 +79,30 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 				gameOver = 1;
 			}
 			else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-				if (IsInside(evento.mouse.x, evento.mouse.y, saida))
-				{
+				if (IsInside(evento.mouse.x, evento.mouse.y, saida1)) {
+					acerto = selecionaFase(2, janela, fila_eventos, acerto);
+				}
+				if (IsInside(evento.mouse.x, evento.mouse.y, saida2)) {
 					return acerto;
 				}
-				else if (IsInside(evento.mouse.x, evento.mouse.y, imagem) && !Arrastando) {
-					Arrastando = 1;
-					imagem.cliqueX = MapearDistancia(evento.mouse.x, imagem.x);
-					imagem.cliqueY = MapearDistancia(evento.mouse.y, imagem.y);
-				}
-				else
-				{
-					Arrastando = 0;
-				}
-			}
-			else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-				Arrastando = 0;
-			}
-
-			ALLEGRO_MOUSE_STATE state;
-
-
-			al_get_mouse_state(&state);
-			if (state.buttons & 1 && Arrastando) {
-				/* Primary (e.g. left) mouse button is held. */
-				if (!VerificarBordas(evento.mouse.x, evento.mouse.y, imagem)) {
-					imagem.x = evento.mouse.x - imagem.cliqueX;
-					imagem.y = evento.mouse.y - imagem.cliqueY;
-				}
-			}
-			if (Arrastando && IsInsideImagem(imagem, retangulo)) {
-				acerto = 1;
-			}
-			else if (Arrastando && !IsInsideImagem(imagem, retangulo)) {
-				acerto = 0;
 			}
 		}
 
 		al_clear_to_color(al_map_rgb(255, 255, 255));
 
-		al_draw_bitmap(retangulo.beatmap, retangulo.x, retangulo.y, 0);
-		al_draw_bitmap(imagem.beatmap, imagem.x, imagem.y, 0);
+		al_draw_bitmap(saida1.bitmap, saida1.x, saida1.y, 0);
+		al_draw_bitmap(saida2.bitmap, saida2.x, saida2.y, 0);
+
 		if (acerto) {
-			al_draw_bitmap(certo.beatmap, certo.x, certo.y, 0);
+			al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
 		}
-		al_draw_bitmap(saida.beatmap, saida.x, saida.y, 0);
+		else
+		{
+			al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
+		}
 
 		al_flip_display();
+
 	}
+	return 0;
 }

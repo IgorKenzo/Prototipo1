@@ -6,6 +6,8 @@
 // Inclui a coisa do mouse
 #include <allegro5/allegro_native_dialog.h>
 
+
+
 #include "Funcoes.h"
 #include "Struct.h"
 #include "FaseController.h"
@@ -20,8 +22,10 @@ int main(void) {
 		fprintf(stderr, "Falha ao iniciar Allegro\n");
 		return -1;
 	}
-	// Inicializa o add-on para utilização de imagens
+	// Inicializa o add-on para utilização de imagens e fontes
 	al_init_image_addon();
+	al_init_font_addon();
+	al_init_ttf_addon();
 
 	// Criamos a nossa janela - dimensões de 640x480 px
 	janela = al_create_display(LARGURA_TELA, ALTURA_TELA);
@@ -30,7 +34,7 @@ int main(void) {
 		return -1;
 	}
 	// Configura o título da janela
-	al_set_window_title(janela, "Protótipo 1");
+	al_set_window_title(janela, "Prototipo 1");
 
 	fila_eventos = al_create_event_queue();
 	if (!fila_eventos) {

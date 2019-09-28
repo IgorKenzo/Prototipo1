@@ -1,6 +1,3 @@
 ﻿  Origem.c
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(77,28): warning C4013:  'selecionaFase' undefined; assuming extern returning int
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(77,28): warning C4013: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(30) : warning C4715: 'selecionaFase': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(77,28): warning C4013: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(97) : warning C4715: 'JogarFase0': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(77,28): warning C4013: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(138) : warning C4715: 'JogarFase1': not all control paths return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(58,28): warning C4013:  'selecionaFase' undefined; assuming extern returning int
   Prototipo1.vcxproj -> D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Debug\Prototipo1.exe

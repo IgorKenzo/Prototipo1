@@ -19,7 +19,7 @@
 
 typedef struct Obj
 {
-	ALLEGRO_BITMAP* beatmap;
+	ALLEGRO_BITMAP* bitmap;
 	int x;
 	int y;
 	int largura;

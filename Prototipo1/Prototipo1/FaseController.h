@@ -9,6 +9,7 @@
 #include "Struct.h"
 #include "Fase0.h"
 #include "Fase1.h"
+#include "Fase2.h"
 
 #ifndef FaseController_H
 #define FaseController_H
@@ -22,9 +23,9 @@ int selecionaFase(int numFase, ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fil
 			break;
 		case 1: return JogarFase1(janela, fila_eventos, acerto);
 			break;
-		case 2: 
+		case 2: return JogarFase2(janela, fila_eventos, acerto);
 			break;
-		default: printf("Fase não encontrada");
+		default: printf("Fase não encontrada"); return 0;
 			break;
 	}
 }
