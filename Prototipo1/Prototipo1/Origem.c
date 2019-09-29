@@ -66,7 +66,21 @@ int main(void) {
 	al_register_event_source(fila_eventos, al_get_mouse_event_source());
 
 
-	int acerto = 0;
+	/////////int acerto = 0;
+
 	//chama o Menu/ primeira fase/ oq quer que seja
-	selecionaFase(0, janela, fila_eventos, acerto);
+	/////////selecionaFase(0, janela, fila_eventos, acerto);
+
+	Progresso progresso;
+	progresso.proximaSala = 0;
+	progresso.Gameover = 0;
+	progresso.Sala1 = 0;
+	progresso.Sala2 = 0;
+	progresso.Sala3 = 0;
+
+	Progresso *prog = &progresso;
+	while (!prog->Gameover)
+	{
+		selecionaFase(janela, fila_eventos, prog);
+	}
 }

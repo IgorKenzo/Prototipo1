@@ -10,12 +10,14 @@
 #include "Fase0.h"
 #include "Fase1.h"
 #include "Fase2.h"
+#include "Fase3.h"
 
 #ifndef FaseController_H
 #define FaseController_H
 
-
-int selecionaFase(int numFase, ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int acerto)
+//Versão do Igor
+//Pega um interiro como parâmetro
+int igor(int numFase, ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int acerto)
 {
 	switch (numFase)
 	{
@@ -30,7 +32,24 @@ int selecionaFase(int numFase, ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fil
 	}
 }
 
-
+//Versão do Claro
+//Pega por referencia o lugar onde está guardado o progresso do jogo
+void selecionaFase(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progresso *progresso)
+{
+	switch (progresso->proximaSala)
+	{
+	case 0: JogarFase0(janela, fila_eventos, progresso);
+		return;
+	case 1: JogarFase1(janela, fila_eventos, progresso);
+		return;
+	case 2: JogarFase2(janela, fila_eventos, progresso);
+		return;
+	case 3: JogarFase3(janela, fila_eventos, progresso);
+		return;
+	default: printf("Fase não encontrada"); return;
+		break;
+	}
+}
 
 
 

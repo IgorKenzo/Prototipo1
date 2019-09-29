@@ -28,6 +28,14 @@ typedef struct Obj
 	int cliqueY;
 } Objeto;
 
+typedef struct prog
+{
+	int proximaSala;
+	int Gameover;
+	int Sala1;
+	int Sala2;
+	int Sala3;
+} Progresso;
 
 Objeto inventario[TAMANHO_INVENTARIO];
 #endif

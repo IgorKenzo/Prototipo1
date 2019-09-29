@@ -133,6 +133,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fase3.h" />
     <ClInclude Include="Fase0.h" />
     <ClInclude Include="Fase1.h" />
     <ClInclude Include="Fase2.h" />

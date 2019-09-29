@@ -9,7 +9,7 @@
 #include "Funcoes.h"
 #include "Struct.h"
 
-int JogarFase2(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int acerto)
+int JogarFase2(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progresso *prog)
 {
 	Objeto imagem;
 	// Variável para imagem
@@ -26,12 +26,26 @@ int JogarFase2(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 	retangulo.altura = 150;
 	retangulo.largura = 150;
 
-	Objeto saida;
-	saida.bitmap = NULL;
-	saida.x = LARGURA_TELA - 100;
-	saida.y = 0;
-	saida.largura = 100;
-	saida.altura = 100;
+	Objeto retanguloBloqueado;
+	retanguloBloqueado.bitmap = NULL;
+	retanguloBloqueado.x = LARGURA_TELA - 150;
+	retanguloBloqueado.y = ALTURA_TELA - 150;
+	retanguloBloqueado.altura = 150;
+	retanguloBloqueado.largura = 150;
+
+	Objeto saidaBaixo;
+	saidaBaixo.bitmap = NULL;
+	saidaBaixo.x = LARGURA_TELA/2 - 50;
+	saidaBaixo.y = ALTURA_TELA-100;
+	saidaBaixo.largura = 100;
+	saidaBaixo.altura = 100;
+
+	Objeto saidaDireita;
+	saidaDireita.bitmap = NULL;
+	saidaDireita.x = LARGURA_TELA - 100;
+	saidaDireita.y = ALTURA_TELA/2-50;
+	saidaDireita.largura = 100;
+	saidaDireita.altura = 100;
 
 	Objeto certo;
 	certo.bitmap = NULL;
@@ -42,9 +56,11 @@ int JogarFase2(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 
 	imagem.bitmap = al_load_bitmap("Imgs/photo.bmp");
 	retangulo.bitmap = al_load_bitmap("Imgs/ret.bmp");
-	saida.bitmap = al_load_bitmap("Imgs/direita.png");
+	retanguloBloqueado.bitmap = al_load_bitmap("Imgs/retblock.png");
+	saidaBaixo.bitmap = al_load_bitmap("Imgs/baixo.png");
+	saidaDireita.bitmap = al_load_bitmap("Imgs/direita.png");
 	certo.bitmap = al_load_bitmap("Imgs/ok.bmp");
-	if (!imagem.bitmap || !retangulo.bitmap || !saida.bitmap) {
+	if (!imagem.bitmap || !retangulo.bitmap || !saidaBaixo.bitmap) {
 		fprintf(stderr, "Falha ao iniciar imagem\n");
 		al_destroy_display(janela);
 		return -1;
@@ -55,16 +71,25 @@ int JogarFase2(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 	// Preenchemos a janela de branco
 	al_clear_to_color(al_map_rgb(255, 255, 255));
 
-	if (acerto)
+	if (prog->Sala2 && prog->Sala3)
 	{
 		imagem.x = retangulo.x + 10;
 		imagem.y = retangulo.y + 10;
 	}
 
 	//desenha a imagem na tela
+	al_draw_bitmap(saidaBaixo.bitmap, saidaBaixo.x, saidaBaixo.y, 0);
+	al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
 	al_draw_bitmap(imagem.bitmap, imagem.x, imagem.y, 0);
-	al_draw_bitmap(retangulo.bitmap, retangulo.x, retangulo.y, 0);
-	al_draw_bitmap(saida.bitmap, saida.x, saida.y, 0);
+
+	if (prog->Sala3)
+	{
+		al_draw_bitmap(retangulo.bitmap, retangulo.x, retangulo.y, 0);
+	}
+	else
+	{
+		al_draw_bitmap(retanguloBloqueado.bitmap, retanguloBloqueado.x, retanguloBloqueado.y, 0);
+	}
 
 	// Atualiza a tela
 	al_flip_display();
@@ -81,12 +106,18 @@ int JogarFase2(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 
 			//se teve eventos e foi um evento de fechar janela, encerra repetição			
 			if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+				prog->Gameover = 1;
 				gameOver = 1;
 			}
 			else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-				if (IsInside(evento.mouse.x, evento.mouse.y, saida))
+				if (IsInside(evento.mouse.x, evento.mouse.y, saidaBaixo))
 				{
-					return acerto;
+					prog->proximaSala = 1;
+					return;
+				}
+				else if (IsInside(evento.mouse.x, evento.mouse.y, saidaDireita)) {
+					prog->proximaSala = 3;
+					return;
 				}
 				else if (IsInside(evento.mouse.x, evento.mouse.y, imagem) && !Arrastando) {
 					Arrastando = 1;
@@ -113,22 +144,27 @@ int JogarFase2(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 					imagem.y = evento.mouse.y - imagem.cliqueY;
 				}
 			}
-			if (Arrastando && IsInsideImagem(imagem, retangulo)) {
-				acerto = 1;
+			if (Arrastando && IsInsideImagem(imagem, retangulo) && prog->Sala3) {
+				prog->Sala2 = 1;
 			}
 			else if (Arrastando && !IsInsideImagem(imagem, retangulo)) {
-				acerto = 0;
+				prog->Sala2 = 0;
 			}
 		}
 
 		al_clear_to_color(al_map_rgb(255, 255, 255));
+		al_draw_bitmap(saidaBaixo.bitmap, saidaBaixo.x, saidaBaixo.y, 0);
+		al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
 
-		al_draw_bitmap(retangulo.bitmap, retangulo.x, retangulo.y, 0);
+		if(prog->Sala3)
+			al_draw_bitmap(retangulo.bitmap, retangulo.x, retangulo.y, 0);
+		else
+			al_draw_bitmap(retanguloBloqueado.bitmap, retanguloBloqueado.x, retanguloBloqueado.y, 0);
+
 		al_draw_bitmap(imagem.bitmap, imagem.x, imagem.y, 0);
-		if (acerto) {
+		if (prog->Sala2 && prog->Sala3) {
 			al_draw_bitmap(certo.bitmap, certo.x, certo.y, 0);
-		}
-		al_draw_bitmap(saida.bitmap, saida.x, saida.y, 0);
+		}		
 
 		al_flip_display();
 	}

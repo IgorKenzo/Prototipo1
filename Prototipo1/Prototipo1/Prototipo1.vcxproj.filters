@@ -36,6 +36,9 @@
     <ClInclude Include="Fase0.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Fase3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Origem.c">

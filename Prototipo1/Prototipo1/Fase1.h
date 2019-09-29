@@ -9,22 +9,22 @@
 #include "Funcoes.h"
 #include "Struct.h"
 
-int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int acerto) {
-	Objeto saida1;
+int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progresso *prog) {
+	Objeto saidaDireita;
 	// Variável para imagem
-	saida1.bitmap = NULL;
-	saida1.x = 0;
-	saida1.y = 0;
-	saida1.largura = 100;
-	saida1.altura = 100;
+	saidaDireita.bitmap = NULL;
+	saidaDireita.x = LARGURA_TELA-100;
+	saidaDireita.y = ALTURA_TELA/2 - 50;
+	saidaDireita.largura = 100;
+	saidaDireita.altura = 100;
 
-	Objeto saida2;
+	Objeto saidaCima;
 	// Variável para imagem
-	saida2.bitmap = NULL;
-	saida2.x = LARGURA_TELA - 100;
-	saida2.y = 0;
-	saida2.largura = 100;
-	saida2.altura = 100;
+	saidaCima.bitmap = NULL;
+	saidaCima.x = LARGURA_TELA/2 - 50;
+	saidaCima.y = 0;
+	saidaCima.largura = 100;
+	saidaCima.altura = 100;
 
 	Objeto mensagem;
 	mensagem.bitmap = NULL;
@@ -40,11 +40,11 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 	mensagemTravada.largura = 200;
 	mensagemTravada.altura = 100;
 
-	saida1.bitmap = al_load_bitmap("Imgs/esquerda.png");
-	saida2.bitmap = al_load_bitmap("Imgs/direita.png");
+	saidaDireita.bitmap = al_load_bitmap("Imgs/direita.png");
+	saidaCima.bitmap = al_load_bitmap("Imgs/cima.png");
 	mensagem.bitmap = al_load_bitmap("Imgs/mensagem.png");
 	mensagemTravada.bitmap = al_load_bitmap("Imgs/mensagemtravada.png");
-	if (!saida1.bitmap || !mensagem.bitmap || !mensagemTravada.bitmap || !saida2.bitmap) {
+	if (!saidaDireita.bitmap || !mensagem.bitmap || !mensagemTravada.bitmap || !saidaCima.bitmap) {
 		fprintf(stderr, "Falha ao iniciar imagem\n");
 		al_destroy_display(janela);
 		return -1;
@@ -56,7 +56,7 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 	al_clear_to_color(al_map_rgb(255, 255, 255));
 
 	//desenha a imagem na tela
-	al_draw_bitmap(saida1.bitmap, saida1.x, saida1.y, 0);
+	al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
 	al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
 	al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
 
@@ -76,24 +76,27 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, int a
 
 			//se teve eventos e foi um evento de fechar janela, encerra repetição			
 			if (evento.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+				prog->Gameover = 1;
 				gameOver = 1;
 			}
 			else if (evento.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-				if (IsInside(evento.mouse.x, evento.mouse.y, saida1)) {
-					acerto = selecionaFase(2, janela, fila_eventos, acerto);
+				if (IsInside(evento.mouse.x, evento.mouse.y, saidaDireita)) {
+					prog->proximaSala = 0;
+					return;
 				}
-				if (IsInside(evento.mouse.x, evento.mouse.y, saida2)) {
-					return acerto;
+				if (IsInside(evento.mouse.x, evento.mouse.y, saidaCima)) {
+					prog->proximaSala = 2;
+					return;
 				}
 			}
 		}
 
 		al_clear_to_color(al_map_rgb(255, 255, 255));
 
-		al_draw_bitmap(saida1.bitmap, saida1.x, saida1.y, 0);
-		al_draw_bitmap(saida2.bitmap, saida2.x, saida2.y, 0);
+		al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
+		al_draw_bitmap(saidaCima.bitmap, saidaCima.x, saidaCima.y, 0);
 
-		if (acerto) {
+		if (prog->Sala2) {
 			al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
 		}
 		else
