@@ -1,20 +1,21 @@
 ﻿  Origem.c
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(71,12): warning C4033:  'JogarFase0' must return a value
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(75,12): warning C4033:  'JogarFase0' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(85,12): warning C4033:  'JogarFase1' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(89,12): warning C4033:  'JogarFase1' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(116,12): warning C4033:  'JogarFase2' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(120,12): warning C4033:  'JogarFase2' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(100,12): warning C4033:  'JogarFase3' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(104,12): warning C4033:  'JogarFase3' must return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(87,12): warning C4033:  'JogarFase1' must return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(91,12): warning C4033:  'JogarFase1' must return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(118,12): warning C4033:  'JogarFase2' must return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(122,12): warning C4033:  'JogarFase2' must return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(102,12): warning C4033:  'JogarFase3' must return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(106,12): warning C4033:  'JogarFase3' must return a value
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(24,57): warning C4047:  'function': 'Progresso *' differs in levels of indirection from 'int'
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(24,57): warning C4024:  'JogarFase0': different types for formal and actual parameter 3
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(26,57): warning C4047:  'function': 'Progresso *' differs in levels of indirection from 'int'
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(26,57): warning C4024:  'JogarFase1': different types for formal and actual parameter 3
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4047:  'function': 'Progresso *' differs in levels of indirection from 'int'
 D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024:  'JogarFase2': different types for formal and actual parameter 3
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(91) : warning C4715: 'JogarFase0': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(120) : warning C4715: 'JogarFase1': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(172) : warning C4715: 'JogarFase2': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(153) : warning C4715: 'JogarFase3': not all control paths return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Funcoes.h(49) : warning C4716: 'caregaInventario': must return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(93) : warning C4715: 'JogarFase0': not all control paths return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(176) : warning C4715: 'JogarFase2': not all control paths return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(124) : warning C4715: 'JogarFase1': not all control paths return a value
+D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(157) : warning C4715: 'JogarFase3': not all control paths return a value
   Prototipo1.vcxproj -> D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Debug\Prototipo1.exe

@@ -28,10 +28,10 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 
 	Objeto mensagem;
 	mensagem.bitmap = NULL;
-	mensagem.x = (LARGURA_TELA / 2 - 100) * -1;
-	mensagem.y = (ALTURA_TELA - 100) * -1;
-	mensagem.largura = 200;
-	mensagem.altura = 100;
+	mensagem.x = (LARGURA_TELA / 2 - 91) * -1;
+	mensagem.y = (ALTURA_TELA - 98) * -1;
+	mensagem.largura = 91;
+	mensagem.altura = 98;
 
 	Objeto mensagemTravada;
 	mensagemTravada.bitmap = NULL;
@@ -40,11 +40,13 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 	mensagemTravada.largura = 200;
 	mensagemTravada.altura = 100;
 
+	ALLEGRO_BITMAP* Background = al_load_bitmap("Imgs/fundo.png");
+
 	saidaDireita.bitmap = al_load_bitmap("Imgs/direita.png");
 	saidaCima.bitmap = al_load_bitmap("Imgs/cima.png");
 	mensagem.bitmap = al_load_bitmap("Imgs/mensagem.png");
 	mensagemTravada.bitmap = al_load_bitmap("Imgs/mensagemtravada.png");
-	if (!saidaDireita.bitmap || !mensagem.bitmap || !mensagemTravada.bitmap || !saidaCima.bitmap) {
+	if (!saidaDireita.bitmap || !mensagem.bitmap || !mensagemTravada.bitmap || !saidaCima.bitmap || !Background) {
 		fprintf(stderr, "Falha ao iniciar imagem\n");
 		al_destroy_display(janela);
 		return -1;
@@ -95,7 +97,8 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 			}
 		}
 
-		al_clear_to_color(al_map_rgb(255, 255, 255));
+		//al_clear_to_color(al_map_rgb(255, 255, 255));
+		al_draw_bitmap(Background, 0, 0, 0);
 
 		al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
 		al_draw_bitmap(saidaCima.bitmap, saidaCima.x, saidaCima.y, 0);
@@ -113,6 +116,7 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 			}
 		}
 
+		caregaInventario();
 		al_flip_display();
 
 	}

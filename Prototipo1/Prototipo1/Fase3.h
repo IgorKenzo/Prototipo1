@@ -14,7 +14,7 @@ int JogarFase3(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 	Objeto imagem;
 	// Variável para imagem
 	imagem.bitmap = NULL;
-	imagem.x = 0;
+	imagem.x = 110;
 	imagem.y = 0;
 	imagem.largura = 100;
 	imagem.altura = 100;
@@ -35,7 +35,7 @@ int JogarFase3(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 
 	Objeto saidaEsquerda;
 	saidaEsquerda.bitmap = NULL;
-	saidaEsquerda.x = 0;
+	saidaEsquerda.x = 110;
 	saidaEsquerda.y = ALTURA_TELA / 2 - 50;
 	saidaEsquerda.largura = 100;
 	saidaEsquerda.altura = 100;
@@ -47,12 +47,14 @@ int JogarFase3(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 	certo.altura = 100;
 	certo.largura = 100;
 
+	ALLEGRO_BITMAP* Background = al_load_bitmap("Imgs/fundo.png");
+
 	imagem.bitmap = al_load_bitmap("Imgs/photo.bmp");
 	retangulo.bitmap = al_load_bitmap("Imgs/ret.bmp");
 	saidaBaixo.bitmap = al_load_bitmap("Imgs/baixo.png");
 	saidaEsquerda.bitmap = al_load_bitmap("Imgs/esquerda.png");
 	certo.bitmap = al_load_bitmap("Imgs/ok.bmp");
-	if (!imagem.bitmap || !retangulo.bitmap || !saidaBaixo.bitmap) {
+	if (!imagem.bitmap || !retangulo.bitmap || !saidaBaixo.bitmap || !saidaEsquerda.bitmap || !certo.bitmap || !Background) {
 		fprintf(stderr, "Falha ao iniciar imagem\n");
 		al_destroy_display(janela);
 		return -1;
@@ -137,7 +139,8 @@ int JogarFase3(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 			}
 		}
 
-		al_clear_to_color(al_map_rgb(255, 255, 255));
+		//al_clear_to_color(al_map_rgb(255, 255, 255));
+		al_draw_bitmap(Background, 0, 0, 0);
 		al_draw_bitmap(saidaBaixo.bitmap, saidaBaixo.x, saidaBaixo.y, 0);
 		al_draw_bitmap(saidaEsquerda.bitmap, saidaEsquerda.x, saidaEsquerda.y, 0);
 
@@ -147,6 +150,7 @@ int JogarFase3(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 			al_draw_bitmap(certo.bitmap, certo.x, certo.y, 0);
 		}
 
+		caregaInventario();
 		al_flip_display();
 	}
 	return 0;
