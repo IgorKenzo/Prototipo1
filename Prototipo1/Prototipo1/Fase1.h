@@ -28,8 +28,8 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 
 	Objeto mensagem;
 	mensagem.bitmap = NULL;
-	mensagem.x = LARGURA_TELA / 2 - 100;
-	mensagem.y = ALTURA_TELA - 100;
+	mensagem.x = (LARGURA_TELA / 2 - 100) * -1;
+	mensagem.y = (ALTURA_TELA - 100) * -1;
 	mensagem.largura = 200;
 	mensagem.altura = 100;
 
@@ -57,7 +57,7 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 
 	//desenha a imagem na tela
 	al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
-	al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
+	//al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
 	al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
 
 	// Atualiza a tela
@@ -88,6 +88,10 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 					prog->proximaSala = 2;
 					return;
 				}
+				if (IsInside(evento.mouse.x, evento.mouse.y, mensagem)) {
+					inventario[posInvent++] = mensagem;
+					prog->Item1 = 1;
+				}
 			}
 		}
 
@@ -96,12 +100,17 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 		al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
 		al_draw_bitmap(saidaCima.bitmap, saidaCima.x, saidaCima.y, 0);
 
-		if (prog->Sala2) {
-			al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
-		}
-		else
+		if (!prog->Item1)
 		{
-			al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
+			if (prog->Sala2) {
+				mensagem.x = LARGURA_TELA / 2 - 100;
+				mensagem.y = ALTURA_TELA - 100;
+				al_draw_bitmap(mensagem.bitmap,mensagem.x,mensagem.y, 0);
+			}
+			else
+			{
+				al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
+			}
 		}
 
 		al_flip_display();

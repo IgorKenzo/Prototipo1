@@ -35,6 +35,7 @@ int main(void) {
 	}
 	// Configura o título da janela
 	al_set_window_title(janela, "Prototipo 1");
+	
 
 	fila_eventos = al_create_event_queue();
 	if (!fila_eventos) {
@@ -77,6 +78,7 @@ int main(void) {
 	progresso.Sala1 = 0;
 	progresso.Sala2 = 0;
 	progresso.Sala3 = 0;
+	progresso.Item1 = 0;
 
 	Progresso *prog = &progresso;
 	while (!prog->Gameover)
