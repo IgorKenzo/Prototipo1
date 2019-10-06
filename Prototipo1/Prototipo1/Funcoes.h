@@ -37,4 +37,15 @@ int IsInsideImagem(Objeto menor, Objeto maior) {
 	return 0;
 }
 
+int caregaInventario()
+{
+	int i;
+	float scale = 0.7;
+	for (i = 0; i < posInvent; i++)
+	{
+		//bitmap, começoX, começoY, larg, alt, posX, posY, novaLarg, novaAlt, flags
+		al_draw_scaled_bitmap(inventario[i].bitmap,0,0,inventario[i].largura, inventario[i].altura,0, i * ALTURA_TELA/10, inventario[i].largura * scale, inventario[i].altura * scale,0);
+	}
+}
+
 #endif

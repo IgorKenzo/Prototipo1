@@ -17,7 +17,7 @@ int JogarFase0(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 	Objeto SaidaEsquerda;
 	// Variável para imagem
 	SaidaEsquerda.bitmap = NULL;
-	SaidaEsquerda.x = 0;
+	SaidaEsquerda.x = 110;
 	SaidaEsquerda.y = ALTURA_TELA/2 - 50;
 	SaidaEsquerda.largura = 100;
 	SaidaEsquerda.altura = 100;
@@ -29,9 +29,11 @@ int JogarFase0(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 	SaidaCima.largura = 100;
 	SaidaCima.altura = 100;
 
+	ALLEGRO_BITMAP* Background = al_load_bitmap("Imgs/fundo.png");
+
 	SaidaEsquerda.bitmap = al_load_bitmap("Imgs/esquerda.png");
 	SaidaCima.bitmap = al_load_bitmap("Imgs/cima.png");
-	if (!SaidaEsquerda.bitmap || !SaidaCima.bitmap) {
+	if (!SaidaEsquerda.bitmap || !SaidaCima.bitmap || !Background) {
 		fprintf(stderr, "Falha ao iniciar imagem\n");
 		al_destroy_display(janela);
 		return -1;
@@ -42,6 +44,7 @@ int JogarFase0(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 
 	// Preenchemos a janela de branco
 	al_clear_to_color(al_map_rgb(255, 255, 255));
+	
 
 	// Atualiza a tela
 	al_flip_display();
@@ -74,12 +77,15 @@ int JogarFase0(ALLEGRO_DISPLAY* janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 			}
 		}
 
-		al_clear_to_color(al_map_rgb(255, 255, 255));
+		//al_clear_to_color(al_map_rgb(255, 255, 255));
+		al_draw_bitmap(Background, 0, 0, 0);
 
 		al_draw_bitmap(SaidaEsquerda.bitmap, SaidaEsquerda.x, SaidaEsquerda.y, 0);
 		al_draw_bitmap(SaidaCima.bitmap, SaidaCima.x, SaidaCima.y, 0);
 		
 		al_draw_text(font24, al_map_rgb(0, 0, 0), 20, ALTURA_TELA-50, 0, "Primeira tela - Texto muito louco pra dar inicio aos enigmas");
+
+		caregaInventario();
 		al_flip_display();
 
 	}

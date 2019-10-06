@@ -10,8 +10,8 @@
 #define Struct_H
 
 // Tamanho da tela
-#define LARGURA_TELA 640
-#define ALTURA_TELA 480
+#define LARGURA_TELA 1000
+#define ALTURA_TELA 600
 
 #define TAMANHO_INVENTARIO 7
 
@@ -35,7 +35,10 @@ typedef struct prog
 	int Sala1;
 	int Sala2;
 	int Sala3;
+	int Item1;
 } Progresso;
 
 Objeto inventario[TAMANHO_INVENTARIO];
+
+int posInvent = 0;
 #endif

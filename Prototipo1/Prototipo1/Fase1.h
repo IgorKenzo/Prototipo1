@@ -28,10 +28,10 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 
 	Objeto mensagem;
 	mensagem.bitmap = NULL;
-	mensagem.x = LARGURA_TELA / 2 - 100;
-	mensagem.y = ALTURA_TELA - 100;
-	mensagem.largura = 200;
-	mensagem.altura = 100;
+	mensagem.x = (LARGURA_TELA / 2 - 91) * -1;
+	mensagem.y = (ALTURA_TELA - 98) * -1;
+	mensagem.largura = 91;
+	mensagem.altura = 98;
 
 	Objeto mensagemTravada;
 	mensagemTravada.bitmap = NULL;
@@ -40,11 +40,13 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 	mensagemTravada.largura = 200;
 	mensagemTravada.altura = 100;
 
+	ALLEGRO_BITMAP* Background = al_load_bitmap("Imgs/fundo.png");
+
 	saidaDireita.bitmap = al_load_bitmap("Imgs/direita.png");
 	saidaCima.bitmap = al_load_bitmap("Imgs/cima.png");
 	mensagem.bitmap = al_load_bitmap("Imgs/mensagem.png");
 	mensagemTravada.bitmap = al_load_bitmap("Imgs/mensagemtravada.png");
-	if (!saidaDireita.bitmap || !mensagem.bitmap || !mensagemTravada.bitmap || !saidaCima.bitmap) {
+	if (!saidaDireita.bitmap || !mensagem.bitmap || !mensagemTravada.bitmap || !saidaCima.bitmap || !Background) {
 		fprintf(stderr, "Falha ao iniciar imagem\n");
 		al_destroy_display(janela);
 		return -1;
@@ -57,7 +59,7 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 
 	//desenha a imagem na tela
 	al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
-	al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
+	//al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
 	al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
 
 	// Atualiza a tela
@@ -88,22 +90,33 @@ int JogarFase1(ALLEGRO_DISPLAY *janela, ALLEGRO_EVENT_QUEUE* fila_eventos, Progr
 					prog->proximaSala = 2;
 					return;
 				}
+				if (IsInside(evento.mouse.x, evento.mouse.y, mensagem)) {
+					inventario[posInvent++] = mensagem;
+					prog->Item1 = 1;
+				}
 			}
 		}
 
-		al_clear_to_color(al_map_rgb(255, 255, 255));
+		//al_clear_to_color(al_map_rgb(255, 255, 255));
+		al_draw_bitmap(Background, 0, 0, 0);
 
 		al_draw_bitmap(saidaDireita.bitmap, saidaDireita.x, saidaDireita.y, 0);
 		al_draw_bitmap(saidaCima.bitmap, saidaCima.x, saidaCima.y, 0);
 
-		if (prog->Sala2) {
-			al_draw_bitmap(mensagem.bitmap, mensagem.x, mensagem.y, 0);
-		}
-		else
+		if (!prog->Item1)
 		{
-			al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
+			if (prog->Sala2) {
+				mensagem.x = LARGURA_TELA / 2 - 100;
+				mensagem.y = ALTURA_TELA - 100;
+				al_draw_bitmap(mensagem.bitmap,mensagem.x,mensagem.y, 0);
+			}
+			else
+			{
+				al_draw_bitmap(mensagemTravada.bitmap, mensagemTravada.x, mensagemTravada.y, 0);
+			}
 		}
 
+		caregaInventario();
 		al_flip_display();
 
 	}
