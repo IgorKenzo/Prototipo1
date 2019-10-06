@@ -1,21 +1,21 @@
 ﻿  Origem.c
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(71,12): warning C4033:  'JogarFase0' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(75,12): warning C4033:  'JogarFase0' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(87,12): warning C4033:  'JogarFase1' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(91,12): warning C4033:  'JogarFase1' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(118,12): warning C4033:  'JogarFase2' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(122,12): warning C4033:  'JogarFase2' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(102,12): warning C4033:  'JogarFase3' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(106,12): warning C4033:  'JogarFase3' must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(24,57): warning C4047:  'function': 'Progresso *' differs in levels of indirection from 'int'
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(24,57): warning C4024:  'JogarFase0': different types for formal and actual parameter 3
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(26,57): warning C4047:  'function': 'Progresso *' differs in levels of indirection from 'int'
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(26,57): warning C4024:  'JogarFase1': different types for formal and actual parameter 3
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4047:  'function': 'Progresso *' differs in levels of indirection from 'int'
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024:  'JogarFase2': different types for formal and actual parameter 3
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Funcoes.h(49) : warning C4716: 'caregaInventario': must return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase0.h(93) : warning C4715: 'JogarFase0': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase2.h(176) : warning C4715: 'JogarFase2': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase1.h(124) : warning C4715: 'JogarFase1': not all control paths return a value
-D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024: D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Prototipo1\Fase3.h(157) : warning C4715: 'JogarFase3': not all control paths return a value
-  Prototipo1.vcxproj -> D:\Senac\2Sem\PI2\Prototipo1\Prototipo1\Debug\Prototipo1.exe
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase0.h(71,12): warning C4033:  'JogarFase0' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase0.h(75,12): warning C4033:  'JogarFase0' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase1.h(87,12): warning C4033:  'JogarFase1' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase1.h(91,12): warning C4033:  'JogarFase1' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase2.h(118,12): warning C4033:  'JogarFase2' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase2.h(122,12): warning C4033:  'JogarFase2' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase3.h(102,12): warning C4033:  'JogarFase3' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase3.h(106,12): warning C4033:  'JogarFase3' deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\FaseController.h(24,57): warning C4047:  'função': 'Progresso *' difere em níveis de indireção de 'int'
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\FaseController.h(24,57): warning C4024:  'JogarFase0': tipos diferentes para parâmetro formal e real 3
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\FaseController.h(26,57): warning C4047:  'função': 'Progresso *' difere em níveis de indireção de 'int'
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\FaseController.h(26,57): warning C4024:  'JogarFase1': tipos diferentes para parâmetro formal e real 3
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4047:  'função': 'Progresso *' difere em níveis de indireção de 'int'
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\FaseController.h(28,57): warning C4024:  'JogarFase2': tipos diferentes para parâmetro formal e real 3
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Funcoes.h(49): warning C4716:  'caregaInventario': deve retornar um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase0.h(93): warning C4715:  'JogarFase0': nem todos os caminhos de controle retornam um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase1.h(124): warning C4715:  'JogarFase1': nem todos os caminhos de controle retornam um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase2.h(176): warning C4715:  'JogarFase2': nem todos os caminhos de controle retornam um valor
+C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Prototipo1\Fase3.h(157): warning C4715:  'JogarFase3': nem todos os caminhos de controle retornam um valor
+  Prototipo1.vcxproj -> C:\Users\lucas\Documents\GitHub\Prototipo1\Prototipo1\Debug\Prototipo1.exe
